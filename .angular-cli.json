@@ -1,7 +1,7 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "qauction"
+    "version": "1.0.0-beta.28.3",
+    "name": "alex2ng-auction"
   },
   "apps": [
     {
@@ -15,13 +15,21 @@
       "main": "main.ts",
       "polyfills": "polyfills.ts",
       "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
+      "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/clarity-icons/clarity-icons.min.css",
+        "../node_modules/clarity-ui/clarity-ui.min.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/mutationobserver-shim/dist/mutationobserver.min.js",
+        "../node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+        "../node_modules/clarity-icons/clarity-icons.min.js",
+        "../node_modules/amazon-cognito-identity-js/dist/aws-cognito-sdk.min.js",
+        "../node_modules/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js",
+        "../node_modules/pusher-js/dist/web/pusher.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -36,13 +44,12 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
     },
     {
-      "project": "src/tsconfig.spec.json"
-    },
-    {
-      "project": "e2e/tsconfig.e2e.json"
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
     }
   ],
   "test": {
@@ -52,6 +59,18 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
   }
 }
