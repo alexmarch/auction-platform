@@ -11,7 +11,7 @@ import { environment } from "../environments/environment";
 export class AppComponent {
   appTitle = environment.appName;
   constructor(
-    private sideNavService: SidenavService,
+    public sideNavService: SidenavService,
     private _router: Router,
     private _platform: PlatformService,
     private _sidenav: SidenavService ){

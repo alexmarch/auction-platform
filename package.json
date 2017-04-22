@@ -7,6 +7,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:aot": "ng build --aot",
+    "build:prod": "ng build --aot --prod --env=prod",
+    "deploy": "cd dist && surge",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
