@@ -1,0 +1,11 @@
+<div class="row flex-items-xs-middle">
+    <div class="col-md col-padding-top-15" *ngFor="let auction of auctions">
+      <app-qauction-card [qauction]="auction" (auctionRemove)="removeQAuction($event)" class="auction-item"></app-qauction-card>
+    </div>
+    <div class="col-xs-4 col-padding-top-15">
+        <div (click)="addNewQAuction()" class="auction-item auction-item--add tooltip tooltip-bottom-right tooltip-md" role="tooltip" aria-haspopup="true">
+           <clr-icon shape="plus"></clr-icon>
+           <span class="tooltip-content">Add new QAuction</span>
+        </div>
+    </div>
+</div>
