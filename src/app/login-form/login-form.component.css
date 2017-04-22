@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+}
+
+:host form {
+  max-width: 100%;
+}
+
+:host label.tooltip .tooltip-content {
+  top: 50%;
+}
+
+:host .login-wrapper {
+  background: url('../../assets/images/geometry2.png');
+}

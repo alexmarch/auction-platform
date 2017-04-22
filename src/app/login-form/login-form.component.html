@@ -1,0 +1,67 @@
+<div class="row flex-items-md-middle flex-items-md-center" >
+  <div class="col-md-8 flex-md-middle">
+    <div class="login-wrapper">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value, loginForm.valid, $event)" class="login" autocomplete="off" novalidate>
+          <label class="title">
+              ALX2NG<span class="trademark">&#8482;</span> <br />
+              Auction Platform&#174;
+          </label>
+
+          <div class="login-group">
+            <!--<div class="auth-source select">
+                <select id="login-auth-source-1">
+                    <option>Local Users</option>
+                    <option>Administrator</option>
+                </select>
+            </div>-->
+
+            <label class="tooltip tooltip-validation tooltip-bottom-left tooltip-md" aria-haspopup="true" role="tooltip"
+                   [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.touched || ((loginForm.controls.username.invalid && submitted))">
+
+              <input formControlName="username" class="username" type="text" placeholder="Username">
+
+              <span class="tooltip-content" *ngIf="loginForm.controls.username.errors">
+                  <div [hidden]="!loginForm.controls.username.errors.required">
+                    Username cannot be empty!
+                  </div>
+                  <div [hidden]="!loginForm.controls.username.errors.minlength">
+                    Username should be more then 5 symbols
+                  </div>
+              </span>
+
+            </label>
+
+            <label class="tooltip tooltip-validation tooltip-bottom-left tooltip-md" aria-haspopup="true" role="tooltip"
+              [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.touched || ((loginForm.controls.password.invalid && submitted))">
+              <input formControlName="password"  class="password" type="password" placeholder="Password">
+              <span class="tooltip-content" *ngIf="loginForm.controls.password.errors">
+                  <div [hidden]="!loginForm.controls.password.errors.required">
+                    Password cannot be empty!
+                  </div>
+                   <div [hidden]="!loginForm.controls.password.errors.pattern">
+                    Password wrong format should contain uppercase symbols
+                  </div>
+                  <div [hidden]="!loginForm.controls.password.errors.minlength">
+                    Password should be more then 8 symbols
+                  </div>
+              </span>
+            </label>
+
+            <div class="checkbox">
+                <input type="checkbox" id="rememberme">
+                <label for="rememberme">
+                    Remember me
+                </label>
+            </div>
+
+            <div class="error active" *ngIf="errorMessage">
+                {{errorMessage}}
+            </div>
+            <button type="submit" class="btn btn-outline">LOG IN</button>
+            <a routerLink="/create-account" class="signup">Sign up for an account</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
