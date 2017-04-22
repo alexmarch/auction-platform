@@ -66,7 +66,7 @@ export class SignupFormComponent implements OnInit {
             if ( err ) {
               this.errorMessage = err.message;
             } else {
-              this._router.navigate(['Profile']);
+              this._router.navigate(['qauction-list']);
             }
           })
         } else {
