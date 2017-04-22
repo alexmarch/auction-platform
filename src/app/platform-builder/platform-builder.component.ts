@@ -52,9 +52,13 @@ export class PlatformBuilderComponent implements OnInit {
   }
 
   removeQAuction ( auction ) {
-    this._api.deleteQA(auction).subscribe( res => {
+    if ( auction.id ) {
+      this._api.deleteQA(auction).subscribe( res => {
+        this.auctions.splice(this.auctions.indexOf(auction), 1);
+      });
+    } else {
       this.auctions.splice(this.auctions.indexOf(auction), 1);
-    });
+    }
   }
 
 }
