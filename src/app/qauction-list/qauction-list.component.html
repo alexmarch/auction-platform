@@ -1,0 +1,20 @@
+<div class="row flex-items-md-middle flex-xs-middle flex-items-xs-center">
+    <div class="col-xs-12 col-md-2 col-sm-5" *ngFor="let auction of auctions">
+      <app-qauction-card [noControls]="true" [qauction]="auction" class="auction-item"></app-qauction-card>
+    </div>
+    <div *ngIf="!auctions || !auctions.length" class="col-xs-8 col-md-8 col-sm-8">
+      <div class="alert alert-info">
+        <button type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+        <div class="alert-item">
+            <span class="alert-text">
+                Welcome to QAuction platform first you should create you first auction
+            </span>
+            <div class="alert-actions">
+                <a routerLink="/qauction-builder" class="alert-action">CREATE QAUCTION</a>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

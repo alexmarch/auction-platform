@@ -1,0 +1,12 @@
+:host {
+  width: 100%;
+  padding: 10px;
+  max-height: 800px;
+  overflow-y: scroll;
+}
+.col-padding-top-15 {
+  padding-top: 15px;
+}
+textarea {
+    border: 1px solid #007cbb;
+}
