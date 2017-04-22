@@ -7,7 +7,7 @@
     </div>
     <form class="search">
         <label for="search_input" *ngIf="authentificated">
-            <input id="search_input" type="text" placeholder="Search @auction...">
+            <input id="search_input" [disabled]="true" type="text" placeholder="Search @auction...">
         </label>
     </form>
     <div class="header-nav" *ngIf="authentificated">
