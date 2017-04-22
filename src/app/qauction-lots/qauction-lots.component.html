@@ -1,0 +1,93 @@
+<div class="lots-wrapper">
+  <div class="lots-table">
+    {{auction.description}}
+    <clr-alert *ngIf="success" [clrAlertType]="'alert-success'">
+      <div class="alert-item">
+          <span class="alert-text">
+              Your bid was placed successfuly !
+          </span>
+      </div>
+    </clr-alert>
+    <clr-alert *ngIf="error" [clrAlertType]="'alert-warning'">
+      <div class="alert-item">
+          <span class="alert-text">
+              Your bid is not allowed pleas make sure you put more then sart price value !
+          </span>
+      </div>
+    </clr-alert>
+    <table class="table table-compact table-noborder">
+        <thead>
+            <tr>
+                <th class="left">Lot Image</th>
+                <th class="left">Lot Name</th>
+                <th class="left">Lot Comments</th>
+                <th class="left">Lot Price (USD)</th>
+                <th class="left">Lot Current Price (USD)</th>
+                <th *ngIf="placeBid"> Your Bid </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lot of lots; let i = index">
+                <td class="left">
+                   {{ lot.imageUrl }}
+                   <clr-icon [hidden]="lot.imageUrl" shape="picture"></clr-icon>
+                </td>
+                <td class="left">
+                  <input *ngIf="!placeBid" autofocus placeholder="Type lot name..." type="text" [(ngModel)]="lot.name" size="25" />
+                  <span *ngIf="placeBid">{{lot.name}}</span>
+                </td>
+                <td class="left">
+                  <textarea *ngIf="!placeBid" placeholder="Type lot description..." [(ngModel)]="lot.comments"></textarea>
+                  <span *ngIf="placeBid">{{lot.comments}}</span>
+                </td>
+                <td class="left">
+                  <input *ngIf="!placeBid" type="number" placeholder="Type lot price..." [(ngModel)]="lot.startPrice" size="20" />
+                  <span *ngIf="placeBid">${{lot.startPrice}}</span>
+                </td>
+                <td class="left">
+                  <input *ngIf="!placeBid" type="number" disabled [(ngModel)]="lot.currentPrice" size="20"  />
+                  <span *ngIf="placeBid">${{lot.currentPrice || lot.startPrice}}</span>
+                </td>
+                <td  *ngIf="placeBid">
+                   <input type="number" autofocus [(ngModel)]="currentBid" size="20"  />
+                </td>
+                <td>
+                  <span [hidden]="!processing" class="spinner spinner-inline">
+                      Processing...
+                  </span>
+                  <span [hidden]="!processing">
+                      Processing...
+                  </span>
+                  <button *ngIf="placeBid && !processing" [disabled]="!currentBid" class="btn btn-success" (click)="placeBidValue(lot)">
+                      <clr-icon shape="add"></clr-icon>
+                      <span class="clr-icon-title">Place Bid</span>
+                  </button>
+                  <button *ngIf="!placeBid" class="btn btn-link" (click)="removeLot(i)">
+                      <clr-icon shape="trash"></clr-icon>
+                      <!--<span class="clr-icon-title">Place Bid</span>-->
+                  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <clr-alert [hidden]="lots.length > 0"  [clrAlertClosable]="false" [clrAlertType]="'alert-info'">
+      <div class="alert-item">
+          <span class="alert-text">
+              You don't have any lots yet pleas add lots here.
+          </span>
+      </div>
+    </clr-alert>
+  </div>
+
+  <div *ngIf="!placeBid" class="btn-group btn-link btn-icon-link">
+    <button class="btn" (click)="addLot()">
+            <clr-icon shape="add"></clr-icon>
+            <span class="clr-icon-title">Add</span>
+    </button>
+    <button class="btn" (click)="clearAllLots()">
+            <clr-icon shape="trash"></clr-icon>
+            <span class="clr-icon-title">Remove all</span>
+    </button>
+  </div>
+</div>
