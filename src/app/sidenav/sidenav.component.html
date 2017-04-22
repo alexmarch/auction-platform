@@ -1,0 +1,8 @@
+<nav class="sidenav" *ngIf="state">
+  <div class="sidebar-header">
+    <clr-icon (click)="closeNavBar()" shape="times" class="close"></clr-icon>
+  </div>
+  <section class="sidenav-content">
+    <ng-content></ng-content>
+  </section>
+</nav>

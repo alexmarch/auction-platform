@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  overflow: hidden;
+  min-width: 220px;
+}
+:host .card {
+  margin-top: 0px !important;
+  background-color: #FAFAFA;
+}
+.text-red{
+  color: #C92100;
+}
+.create-by {
+  color: #747474;
+  font-size: 7pt;
+}
+.card-title > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+}
+.card-text {
+  height: 120px;
+  overflow: scroll;
+}
+.lots-list {
+  height: 100px;
+  overflow: scroll;
+  font-size: 8pt;
+}
+.favorite-icon {
+  color: #FAC400;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.qa-label {
+  font-size: 8pt;
+}
+
+.currentPrice {
+  /*font-size: 12pt;*/
+}
+
+:host textarea {
+  resize: none;
+  background-color: rgba(0,0,0,0);
+  border: 1px #ccc dashed;
+}
+
+textarea {
+      border: 1px solid #007cbb;
+}

@@ -54,8 +54,8 @@ export class HeaderComponent implements OnInit {
     let favList = this._qauction.getFavList();
     if ( favList && favList.length > 0 ) {
       this._api.getFavList(favList).subscribe(result => {
+        console.debug('[getFavListStatus]', result);
         this.favlist = result.qauctionTable;
-
       })
     }
     console.log(favList);

@@ -23,20 +23,34 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *ngFor="let item of favlist">
-                <a href="javascript:void(0)" [style.height]="auto" clrDropdownItem *ngIf="user" class="dropdown-item--icon">
+                <a href="javascript:void(0)" clrDropdownItem *ngIf="user" class="dropdown-item--icon">
                   QAuction: {{ item.name }}
                   <div class="lot-item--small" *ngFor="let lot of item.lots">
-                     {{lot.name}} ${{lot.startPrice}} / ${{lot.currentPrice}}
+                     {{lot.name}} ${{lot.startPrice}} / ${{lot.currentPrice || lot.startPrice}}
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
             </clr-dropdown-menu>
       </clr-dropdown>
 
-       <a href="javascript://" class="nav-link nav-icon" *ngIf="authentificated">
-            <!--class="has-badge--error"-->
-            <clr-icon shape="notification" class="has-badge" ></clr-icon>
-       </a>
+       <clr-dropdown clrMenuPosition="bottom-right" *ngIf="authentificated">
+            <button [disabled]="!_qauction.notify.length" class="nav-icon" clrDropdownToggle>
+                <clr-icon shape="notification" [ngClass]="{'is-solid': _qauction.notify.length, 'has-badge--success' : _qauction.notify.length}"  class="" ></clr-icon>
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu *ngFor="let item of _qauction.notify">
+                <a href="javascript:void(0)" clrDropdownItem *ngIf="user" class="dropdown-item--icon">
+                  QAuction: {{ item.auctionName }}
+                  <div class="lot-item--small">
+                     {{item.lotName}} ${{item.startPrice}} / ${{item.currentPrice || item.startPrice}}
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+            </clr-dropdown-menu>
+      </clr-dropdown>
+
+       <!--<a href="javascript://" class="nav-link nav-icon" *ngIf="authentificated">
+       </a>-->
 
        <a href="javascript://" (click)="_sidenav.show('about')" class="nav-link nav-icon" *ngIf="authentificated">
             <clr-icon shape="info-circle"></clr-icon>

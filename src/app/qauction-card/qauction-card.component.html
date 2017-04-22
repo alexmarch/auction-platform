@@ -1,0 +1,92 @@
+        <div class="card">
+            <div class="card-header">
+              <!--<a *ngIf="!noControls" href="#" role="tooltip" aria-haspopup="true" class="tooltip tooltip-md">
+                <clr-icon shape="settings"></clr-icon>
+                <span class="tooltip-content">QAuction Settings</span>
+              </a>-->
+              <button *ngIf="!noControls"  [disabled]="qauction.state == 1" (click)="removeQAuction($event)" role="tooltip" aria-haspopup="true" class="btn btn-link tooltip tooltip-md">
+                <clr-icon shape="trash" class="text-red"></clr-icon>
+                <span class="tooltip-content">Remove QAuction</span>
+              </button>
+              <div *ngIf="noControls" class="create-by">Create By</div>
+              <label class="qa-label" *ngIf="!noControls">QAuction Name</label>
+              <input [disabled]="qauction.state == 1" autofocus  *ngIf="!noControls" type="text" [(ngModel)]="qauction.name" placeholder="Name...">
+              <img  *ngIf="noControls && qauction.user" src="../assets/images/svg/male-persone.svg" [hidden]="qauction.user.gender !== 'male'" width="32" alt="Male perosne">
+              <img  *ngIf="noControls && qauction.user" src="../assets/images/svg/female-persone.svg" [hidden]="qauction.user.gender !== 'female'" width="32" alt="Female perosne">
+              <span *ngIf="noControls && qauction.user">{{ qauction.user.username || qauction.user.nickname }}</span>
+              <clr-icon *ngIf="noControls && !isFavorite(qauction)" (click)="addFav(qauction)" shape="favorite" class="favorite-icon"></clr-icon>
+              <clr-icon *ngIf="noControls && isFavorite(qauction)" shape="favorite" (click)="removeFav(qauction)" class="favorite-icon is-solid"></clr-icon>
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                   <label class="qa-label" *ngIf="!noControls">QAuction Description</label>
+                   <textarea [disabled]="qauction.state == 1"  *ngIf="!noControls" [(ngModel)]="qauction.description" placeholder="Description..."></textarea>
+                   <span *ngIf="noControls">{{ qauction.name }}</span>
+                </div>
+                <div class="card-text">
+                   <div class="lots-list" *ngIf="!noControls && qauction.lots.length">
+                    <div *ngFor="let lot of qauction.lots; let i=index;">
+                        {{ lot.name }} Price: $ {{ lot.startPrice }} / $ {{ lot.currentPrice || lot.startPrice }}
+                    </div>
+                   </div>
+                    <span *ngIf="noControls">
+                      <clr-icon shape="info"></clr-icon>
+                      {{ qauction.description }}
+                    </span>
+                    <div *ngIf="!noControls" class="alert alert-info" [hidden]="qauction.lots.length">
+                      <div class="alert-item">
+                          <span class="alert-text">
+                              You don't have any lots for current QAuction.
+                          </span>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-footer">
+               <button  *ngIf="noControls" type="button" (click)="placeBids=true" class="btn btn-success btn-sm">
+                 Place Bids
+               </button>
+               <span *ngIf="noControls">Lots <span class="badge badge-purple">{{qauction.lots.length}}</span></span>
+               <div class="btn-group btn-primary" *ngIf="!noControls">
+                <button [disabled]="qauction.state == 1"  type="button" (click)="opened=true" class="btn  btn-sm">
+                  <clr-icon shape="add"></clr-icon>
+                  Add lots {{ qauction.lots.length > 0 ? '(' + qauction.lots.length + ')' : '' }}
+                  <!--<span class="badge badge-info">{{qauction.lots.length}}</span>-->
+                </button>
+                <button *ngIf="qauction.state !== 1" type="button" (click)="startAuction()" [disabled]="isStartDisabled()" class="btn btn-success btn-sm">
+                  <clr-icon shape="play"></clr-icon>
+                  Start
+                </button>
+                <button *ngIf="qauction.state == 1" type="button" (click)="stopAuction()"  class="btn btn-danger btn-sm">
+                  <clr-icon shape="stop"></clr-icon>
+                  Stop
+                </button>
+               </div>
+            </div>
+        </div>
+      <!--
+        QAuction lots modal
+      -->
+      <clr-modal [(clrModalOpen)]="placeBids" [clrModalClosable]="false" [clrModalStaticBackdrop]="true" [clrModalSize]="'xl'">
+        <h3 class="modal-title">QAuction: {{ qauction.name }}</h3>
+        <div class="modal-body">
+          <app-qauction-lots [auction]="qauction" [placeBid]="true" [lots]="qauction.lots"></app-qauction-lots>
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-outline" (click)="opened = false">Cancel</button>-->
+            <button type="button" class="btn btn-primary" (click)="placeBids = false">Done</button>
+        </div>
+      </clr-modal>
+
+       <clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false" [clrModalStaticBackdrop]="true" [clrModalSize]="'xl'">
+        <h3 class="modal-title">QAuction ({{ qauction.name || 'Empty QAuction Name' }}) Lots</h3>
+        <div class="modal-body">
+          <app-qauction-lots [auction]="qauction" [lots]="qauction.lots"></app-qauction-lots>
+        </div>
+        <div class="modal-footer">
+            <!--<button type="button" class="btn btn-outline" (click)="opened = false">Cancel</button>-->
+            <button type="button" class="btn btn-primary" (click)="opened = false">Ok</button>
+        </div>
+      </clr-modal>
+

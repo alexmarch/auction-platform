@@ -46,7 +46,7 @@ interface IQAuction {
 @Injectable()
 class QauctionService {
   auctions: Array<IQAuction>;
-  notify: Array<any>;
+  notify: Array<any> = [];
   constructor() { }
 
   addNewAuction(auction: IQAuction){
@@ -136,6 +136,7 @@ class QauctionService {
     }
     return result;
   }
+
   addNotifyItem( item: any ) {
     this.notify.push(item);
   }
