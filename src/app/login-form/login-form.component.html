@@ -18,7 +18,7 @@
             <label class="tooltip tooltip-validation tooltip-bottom-left tooltip-md" aria-haspopup="true" role="tooltip"
                    [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.touched || ((loginForm.controls.username.invalid && submitted))">
 
-              <input formControlName="username" class="username" type="text" placeholder="Username">
+              <input formControlName="username" autofocus class="username" type="text" placeholder="Username">
 
               <span class="tooltip-content" *ngIf="loginForm.controls.username.errors">
                   <div [hidden]="!loginForm.controls.username.errors.required">
