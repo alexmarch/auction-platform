@@ -1,0 +1,81 @@
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value, signUpForm.valid, $event)" autocomplete="off" novalidate>
+      <section class="form-block">
+        <label>Register new account</label>
+        <div class="form-group">
+          <label class="required">
+            Username
+          </label>
+            <clr-tooltip [clrTooltipDirection]="'top-right'" [clrTooltipSize]="'md'">
+                <clr-icon shape="info-circle" size="24"></clr-icon>
+                <clr-tooltip-content>
+                    <span>Example: Username1</span>
+                </clr-tooltip-content>
+            </clr-tooltip>
+          <label class="tooltip tooltip-validation tooltip-bottom-left tooltip-md" aria-haspopup="true" role="tooltip"
+              [class.invalid]="!signUpForm.controls.username.valid && signUpForm.controls.username.touched || ((signUpForm.controls.username.invalid && submitted))">
+            <input formControlName="username" type="text" autofocus placeholder="Enter your username" size="25" >
+            <span class="tooltip-content" *ngIf="signUpForm.controls.username.errors">
+                  <div [hidden]="!signUpForm.controls.username.errors.required">Username cannot be empty!</div>
+                  <div [hidden]="!signUpForm.controls.username.errors.minlength">Username length should be more then 5 symbols</div>
+            </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="required">
+            Email
+          </label>
+          <clr-tooltip [clrTooltipDirection]="'top-right'" [clrTooltipSize]="'md'">
+                <clr-icon shape="info-circle" size="24"></clr-icon>
+                <clr-tooltip-content>
+                    <span>Example: email1@domain.com</span>
+                </clr-tooltip-content>
+          </clr-tooltip>
+          <label class="tooltip tooltip-validation tooltip-bottom-left tooltip-md" aria-haspopup="true" role="tooltip"
+              [class.invalid]="!signUpForm.controls.email.valid && signUpForm.controls.email.touched || ((signUpForm.controls.email.invalid && submitted))">
+            <input formControlName="email" type="email"  placeholder="Enter your email" size="25">
+            <span class="tooltip-content" *ngIf="signUpForm.controls.email.errors">
+                  <div [hidden]="!signUpForm.controls.email.errors.required">Email cannot be empty!</div>
+                  <div [hidden]="!signUpForm.controls.email.errors.pattern">Email wrong format!</div>
+            </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="required">
+            Password
+          </label>
+          <clr-tooltip [clrTooltipDirection]="'top-right'" [clrTooltipSize]="'md'">
+                <clr-icon shape="info-circle" size="24"></clr-icon>
+                <clr-tooltip-content>
+                    <span>Example: My123_Password</span>
+                </clr-tooltip-content>
+          </clr-tooltip>
+          <label class="tooltip tooltip-validation tooltip-bottom-left tooltip-md" aria-haspopup="true" role="tooltip"
+              [class.invalid]="!signUpForm.controls.password.valid && signUpForm.controls.password.touched || ((signUpForm.controls.password.invalid && submitted))">
+            <input formControlName="password" type="password" placeholder="Enter your password" size="25">
+            <span class="tooltip-content" *ngIf="signUpForm.controls.password.errors">
+                  <div [hidden]="!signUpForm.controls.password.errors.required">
+                    Password cannot be empty!
+                  </div>
+                   <div [hidden]="!signUpForm.controls.password.errors.pattern">
+                    Password wrong format should contain uppercase symbols
+                  </div>
+                  <div [hidden]="!signUpForm.controls.password.errors.minlength">
+                    Password should be more then 8 symbols
+                  </div>
+            </span>
+          </label>
+        </div>
+        <div class="form-group">
+            <label class="required">Gender</label>
+            <label>{{_userService.getUser().gender}}</label>
+        </div>
+         <clr-alert [clrAlertType]="'alert-danger'" [hidden]="!errorMessage">
+          <div class="alert-item">
+              <span class="alert-text">
+                  {{errorMessage}}
+              </span>
+          </div>
+        </clr-alert>
+        <button type="submit" class="btn btn-outline">Register</button>
+      </section>
+    </form>

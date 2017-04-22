@@ -1,3 +1,12 @@
-<h1>
-  {{title}}
-</h1>
+<clr-main-container [style.backgroundColor]="_platform.bgColor">
+  <app-header [title]="appTitle"></app-header>
+  <div class="content-container">
+    <router-outlet></router-outlet>
+    <app-sidenav [@toggle]="sideNavService.isNavBarActive">
+        <app-signup-form *ngIf="isActive('create-account')"></app-signup-form>
+        <app-settings *ngIf="sideNavService.options === 'settings'"></app-settings>
+        <app-about *ngIf="sideNavService.options === 'about'"></app-about>
+     </app-sidenav>
+  </div>
+</clr-main-container>
+
