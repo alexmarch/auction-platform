@@ -1,0 +1,18 @@
+<div class="content-area">
+  <div class="row flex-items-xs-middle flex-items-xs-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex-xs-middle">
+      <h1 class="text-center"> Welcome to {{message}}</h1>
+      <h3 class="text-center" *ngIf="!genderType">Choose your gender</h3>
+    </div>
+  </div>
+  <div class="row flex-items-xs-middle flex-items-xs-center">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 flex-xs-middle" *ngIf="!genderType || genderType == 'male' || !sideNavService.isNavBarActive">
+      <img (click)="genderClickHandler('male')"  src="../assets/images/svg/male-persone.svg" width="100%" alt="Male perosne">
+      <button type="submit" (click)="genderClickHandler('male')" class="btn btn-link btn-block">Male</button>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 flex-xs-middle" *ngIf="!genderType || genderType == 'female' || !sideNavService.isNavBarActive">
+      <img (click)="genderClickHandler('female')" src="../assets/images/svg/female-persone.svg" width="100%" alt="Male perosne">
+      <button type="submit" (click)="genderClickHandler('female')"  class="btn btn-link btn-block">Female</button>
+    </div>
+  </div>
+</div>

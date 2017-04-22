@@ -1,0 +1,6 @@
+:host {
+  width: 100%;
+}
+:host img:hover {
+  cursor: pointer;
+}
