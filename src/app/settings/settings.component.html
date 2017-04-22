@@ -1,0 +1,5 @@
+<h2>Background colors</h2>
+<div class="color-items">
+  <div class="color-item" *ngFor="let bgBlock of bgColors; let i=index;" (click)="selectColor(i)" [style.backgroundColor]="bgBlock">
+  </div>
+</div>

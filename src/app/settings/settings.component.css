@@ -1,0 +1,18 @@
+:host {
+  width: 100%;
+}
+.color-items {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.color-items .color-item {
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+}
