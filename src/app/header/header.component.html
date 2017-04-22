@@ -1,0 +1,76 @@
+<clr-header class="header header-4">
+    <div class="branding">
+      <a href="/" class="nav-link">
+        <clr-icon shape="bank" class="is-inverse" size="32"></clr-icon>
+        <span class="title">{{title}}</span>
+      </a>
+    </div>
+    <form class="search">
+        <label for="search_input" *ngIf="authentificated">
+            <input id="search_input" type="text" placeholder="Search @auction...">
+        </label>
+    </form>
+    <div class="header-nav" *ngIf="authentificated">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/qauction-builder"><span class="nav-text">QAuction Builder</span></a>
+    </div>
+    <div class="header-nav" *ngIf="authentificated">
+        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/qauction-list"><span class="nav-text">QAuctions List</span></a>
+    </div>
+    <div class="header-actions">
+       <!--<a href="#" class="nav-link" *ngIf="authentificated"><span class="nav-text">@Your platform background</span></a>-->
+
+       <!--<a href="javascript://" class="nav-link nav-icon" *ngIf="authentificated">
+            <clr-icon shape="favorite"></clr-icon>
+       </a>-->
+
+       <clr-dropdown clrMenuPosition="bottom-right" *ngIf="authentificated">
+            <button [disabled]="!_qauction.getFavList().length" (click)="getFavListStatus()" class="nav-icon" clrDropdownToggle>
+                <clr-icon shape="favorite" [ngClass]="{ 'is-solid' : _qauction.getFavList().length}"></clr-icon>
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu *ngFor="let item of favlist">
+                <a href="javascript:void(0)" [style.height]="auto" clrDropdownItem *ngIf="user" class="dropdown-item--icon">
+                  QAuction: {{ item.name }}
+                  <div class="lot-item--small" *ngFor="let lot of item.lots">
+                     {{lot.name}} ${{lot.startPrice}} / ${{lot.currentPrice}}
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+            </clr-dropdown-menu>
+      </clr-dropdown>
+
+       <a href="javascript://" class="nav-link nav-icon" *ngIf="authentificated">
+            <!--class="has-badge--error"-->
+            <clr-icon shape="notification" class="has-badge" ></clr-icon>
+       </a>
+
+       <a href="javascript://" (click)="_sidenav.show('about')" class="nav-link nav-icon" *ngIf="authentificated">
+            <clr-icon shape="info-circle"></clr-icon>
+       </a>
+
+       <a routerLink="/login" class="nav-link" *ngIf="!authentificated"><span class="nav-text">Login In Account</span></a>
+
+       <clr-dropdown clrMenuPosition="bottom-right" *ngIf="authentificated">
+            <button class="nav-icon" clrDropdownToggle>
+                <clr-icon shape="user"></clr-icon>
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <clr-dropdown-menu>
+                <a href="#" clrDropdownItem *ngIf="user" class="dropdown-item--profile">
+                  <img src="../assets/images/svg/male-persone.svg" [hidden]="user.gender !== 'male'" width="32" alt="Male perosne">
+                  <img src="../assets/images/svg/female-persone.svg" [hidden]="user.gender !== 'female'" width="32" alt="Female perosne">
+                  {{user.username}}
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" (click)="showSettingsSideBar($event)" clrDropdownItem *ngIf="user" class="dropdown-item--icon">
+                  <clr-icon shape="settings"></clr-icon> Settings
+                </a>
+                <div class="dropdown-divider"></div>
+                <!--<a href="#" clrDropdownItem>Preferences</a>-->
+                <button clrDropdownItem class="dropdown-item--icon" (click)="logoutClick($event)">
+                    <clr-icon shape="logout"></clr-icon> Log out
+                </button>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
+</clr-header>

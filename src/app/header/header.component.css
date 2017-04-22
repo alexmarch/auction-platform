@@ -1,0 +1,17 @@
+.dropdown-item--profile {
+  height: 32px;
+}
+.dropdown-item--logout {
+  position: relative;
+  padding-left: 50px;
+}
+.dropdown-item--icon {
+  position: relative;
+  height: auto;
+}
+.dropdown-item--logout clr-icon {
+  left: 24px;
+}
+.lot-item--small {
+  font-size: 9px;
+}
