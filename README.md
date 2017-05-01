@@ -1,5 +1,5 @@
 # Qauction
 
-Login details:
-  Username: angularattack
-  Password: Angular_Attack2017
+Login details: <br />
+Username: angularattack <br />
+Password: Angular_Attack2017
